@@ -7,10 +7,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends AppCompatActivity {
+
+    public final static String EXTRA_MESSAGE = "com.example.cory.coryalfordactivities.MESSAGE";
+    public final static String EXTRA_MESSAGE2 = "com.example.cory.coryalfordactivities.MESSAGE2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = new TextView(this);
+        //TextView textView = new TextView(this);
+        TextView textView = (TextView) findViewById(R.id.message1);
         textView.setTextSize(40);
         textView.setText(message);
 
@@ -39,4 +44,15 @@ public class DisplayMessageActivity extends AppCompatActivity {
         layout.addView(textView);
     }
 
+    /** Called when the user clicks the Send button */
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        TextView textView = (TextView) findViewById(R.id.message1);
+        EditText editText = (EditText) findViewById(R.id.edit_message2);
+        String message1 = textView.getText().toString();
+        String message2 = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message1);
+        intent.putExtra(EXTRA_MESSAGE2, message2);
+        startActivity(intent);
+    }
 }
