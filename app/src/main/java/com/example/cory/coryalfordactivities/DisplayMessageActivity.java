@@ -35,18 +35,14 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        //TextView textView = new TextView(this);
         TextView textView = (TextView) findViewById(R.id.message1);
         textView.setTextSize(40);
         textView.setText(message);
-
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-        layout.addView(textView);
     }
 
     /** Called when the user clicks the Send button */
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, DisplayTwoMessageActivity.class);
         TextView textView = (TextView) findViewById(R.id.message1);
         EditText editText = (EditText) findViewById(R.id.edit_message2);
         String message1 = textView.getText().toString();
